@@ -1,0 +1,17 @@
+{
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "tailwindCSS.rootFontSize": 10,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    ".*Styles",
+    ".*classNames.*"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
