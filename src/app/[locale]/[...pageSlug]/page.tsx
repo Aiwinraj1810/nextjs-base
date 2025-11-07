@@ -1,3 +1,5 @@
+//nextjs-base\src\app\[locale]\[...pageSlug]\page.tsx
+
 import createMetaData from "@/lib/createMetadata";
 import { GetRoutes } from "@/lib/methods.server";
 import { pickRule } from "@/lib/route-rule";

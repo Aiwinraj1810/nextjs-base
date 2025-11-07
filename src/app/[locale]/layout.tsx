@@ -9,6 +9,7 @@ import { setStaticParamsLocale } from "next-international/server";
 import NextTopLoader from "nextjs-toploader";
 import React from "react";
 import { getStaticParams } from "../locales/server";
+import HeaderBlock from "@/components/blocks/layout/HeaderBlock";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -74,6 +75,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${inter.className}`}>
         <NextTopLoader showSpinner={false} color="#C36520" />
         <AppProvider locale={locale} globalConfig={globalConfig?.data}>
+          {/* <HeaderBlock /> */}
           <CookiePolicy />
           {children}
         </AppProvider>

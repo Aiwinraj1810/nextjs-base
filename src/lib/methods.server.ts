@@ -1,3 +1,5 @@
+// nextjs-base\src\lib\methods.server.ts
+
 import { CommonCollectionData, TLocale } from "@/typings/common";
 import {
   RemoteConfigProps,
@@ -5,6 +7,8 @@ import {
   SitemapPageProps,
 } from "@/typings/strapi";
 import {
+  NewsCategoryCollection,
+  NewsCollection,
   RemoteConfigCollection,
   RouteCollection,
   SitemapCollection,
@@ -91,5 +95,88 @@ export const GetSitemapMetaData = async (
     },
     locale,
   })) as SitemapPageProps;
+  return data;
+};
+
+export const GetNewsList = async (
+  locale: TLocale = "en",
+  queryParams: {
+    page?: number;
+    pageSize?: number;
+    sort?: string;
+    category?: string;
+    search?: string;
+  } = {},
+) => {
+  const {
+    page = 1,
+    pageSize = 9,
+    sort = "createdAt:desc",
+    category,
+    search,
+  } = queryParams;
+
+  const filters: any = {};
+
+  if (category) {
+    filters.Category = {
+      Key: { $eq: category },
+    };
+  }
+
+  if (search) {
+    filters.PageTitle = {
+      $containsi: search,
+    };
+  }
+
+  try {
+    const data = await NewsCollection.find({
+      locale,
+      // populate: {
+      //   Image: { populate: "*" },
+      //   Category: { populate: "*" },
+      //   SEO: { populate: "*" },
+      // },
+      // filters,
+      pagination: {
+        page,
+        pageSize,
+      },
+      // sort: [sort],
+    });
+    return data;
+  } catch (err: any) {
+    console.error("GetNewsList failed:", err?.response?.data || err);
+    throw err;
+  }
+};
+
+/**
+ * Fetch all News Categories
+ */
+export const GetNewsCategories = async (locale: TLocale = "en") => {
+  const data = await NewsCategoryCollection.find({
+    locale,
+    // fields: ["Title", "Key"],
+    // sort: ["Title:asc"],
+  });
+  return data;
+};
+
+export const getNewsDetail = async (slug: string, locale: TLocale = "en") => {
+  const data = await NewsCollection.find({
+    filters: {
+      PageURL: { $eq: slug },
+    },
+    populate: {
+      Image: { populate: "*" },
+      SEO: { populate: "*" },
+      Category: { populate: "*" },
+      related_articles: { populate: "*" },
+    },
+    locale,
+  });
+
   return data;
 };

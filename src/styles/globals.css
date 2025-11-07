@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 :root {
-  font-size: 10px;
+   font-size: min(
+    /* width-driven clamp: anchor 1vw to 0.9rem (14.4px at 16px base) */
+      clamp(0.5625rem, calc(0.625rem + ((1vw - 0.9rem) * 1.25)), 0.9rem),
+    /* height-driven clamp: anchor 1svh to 0.5625rem (9px at 16px base) */
+      clamp(0.5625rem, calc(0.625rem + ((1svh - 0.5625rem) * 1.25)), 0.9rem)
+  );
 }
 
 @layer utilities {

@@ -14,4 +14,9 @@ export const RouteCollection = StrapiSDK.collection("routes");
 
 export const RemoteConfigCollection = StrapiSDK.single("remote-config");
 
+export const NewsCollection = StrapiSDK.collection("news-items");
+
+export const NewsCategoryCollection = StrapiSDK.collection("news-categories");
+
+
 export default StrapiSDK;
