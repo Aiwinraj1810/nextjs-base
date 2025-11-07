@@ -18,5 +18,7 @@ export const NewsCollection = StrapiSDK.collection("news-items");
 
 export const NewsCategoryCollection = StrapiSDK.collection("news-categories");
 
+export const HeaderSingle = StrapiSDK.single("header-block")
+
 
 export default StrapiSDK;

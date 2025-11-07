@@ -17,8 +17,6 @@ const FullBlockRendererPages = async ({
 }: FullBlockRendererPagesProps) => {
   const getComponent = (block: DynamicZoneProps, index: number) => {
     switch (block.__component) {
-      case "blocks.header":
-        return <HeaderBlock block={block} key={`block-${index}`} />;
       case "blocks.two-column-content-block":
         return <ContentBlock block={block} key={`block-${index}`} />;
       case "blocks.full-width-image":

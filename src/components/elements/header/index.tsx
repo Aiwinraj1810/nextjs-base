@@ -1,5 +1,7 @@
+//nextjs-base\src\components\elements\header\index.tsx
+
 import { getCurrentLocale } from "@/app/locales/server";
-import { getNavigationMenu } from "@/lib/methods";
+import { getNavigationMenu } from "@/lib/methods.server";
 import HeaderContent from "./HeaderContent";
 
 export default async function Header() {

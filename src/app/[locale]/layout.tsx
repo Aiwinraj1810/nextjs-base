@@ -1,6 +1,6 @@
 import AppProvider from "@/components/AppProvider";
 import CookiePolicy from "@/components/elements/CookiePolicy";
-import { GetRemoteConfig } from "@/lib/methods.server";
+import { GetRemoteConfig, GetHeaderBlock } from "@/lib/methods.server";
 import { inter } from "@/styles/fonts";
 import { PagePrams } from "@/typings/common";
 import { GoogleTagManager } from "@next/third-parties/google";
@@ -9,7 +9,7 @@ import { setStaticParamsLocale } from "next-international/server";
 import NextTopLoader from "nextjs-toploader";
 import React from "react";
 import { getStaticParams } from "../locales/server";
-import HeaderBlock from "@/components/blocks/layout/HeaderBlock";
+import Header from "@/components/elements/header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -75,7 +75,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} ${inter.className}`}>
         <NextTopLoader showSpinner={false} color="#C36520" />
         <AppProvider locale={locale} globalConfig={globalConfig?.data}>
-          {/* <HeaderBlock /> */}
+          <Header />
           <CookiePolicy />
           {children}
         </AppProvider>

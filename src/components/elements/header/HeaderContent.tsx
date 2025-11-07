@@ -1,4 +1,6 @@
 "use client";
+
+//nextjs-base\src\components\elements\header\HeaderContent.tsx
 import { useApp } from "@/components/AppProvider";
 import { cn } from "@/lib/utils";
 import { IHeaderNavItem } from "@/typings/header";

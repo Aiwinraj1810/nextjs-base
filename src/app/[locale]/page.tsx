@@ -1,3 +1,5 @@
+//nextjs-base\src\app\[locale]\page.tsx
+
 import FullBlockRendererPages from "@/components/blocks/FullBlockRenderer";
 import { GetSitemapData, GetSitemapMetaData } from "@/lib/methods.server";
 import { NextJSPageProps } from "@/typings/common";
@@ -34,7 +36,7 @@ export default async function HomePage({ params }: Awaited<NextJSPageProps>) {
     return notFound();
   }
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen overflow-s">
       {/* {JSON.stringify(data)} */}
       <FullBlockRendererPages blocks={page?.Blocks} />
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+//nextjs-base\src\components\blocks\layout\HeaderBlock.tsx
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +38,7 @@ const HeaderBlock = ({ block }: HeaderBlockProps) => {
   
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+      className={`sticky top-0 w-full z-50 transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
       } shadow-md`}
       style={{ backgroundColor: background_color || "#ffffff" }}

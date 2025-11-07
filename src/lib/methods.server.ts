@@ -7,12 +7,15 @@ import {
   SitemapPageProps,
 } from "@/typings/strapi";
 import {
+  HeaderSingle,
   NewsCategoryCollection,
   NewsCollection,
   RemoteConfigCollection,
   RouteCollection,
   SitemapCollection,
 } from "./strapi";
+import { IHeaderNavItem } from "@/typings/header";
+import { get } from "@/lib/fetch";
 
 const previewHandler = (
   documentId: Pick<CommonCollectionData, "documentId">,
@@ -41,6 +44,17 @@ export const GetRoutes = async (
 export const GetRemoteConfig = async () => {
   const data = (await RemoteConfigCollection.find()) as RemoteConfigProps;
 
+  return data;
+};
+
+export const getNavigationMenu = async (
+  slug: string,
+  locale: TLocale = "en",
+) => {
+  const data: IHeaderNavItem[] = await get(`/api/navigation/render/${slug}`, {
+    locale,
+    type: "TREE",
+  });
   return data;
 };
 // Sitemap Pages
@@ -179,4 +193,17 @@ export const getNewsDetail = async (slug: string, locale: TLocale = "en") => {
   });
 
   return data;
+};
+
+export const GetHeaderBlock = async (locale: TLocale = "en") => {
+  try {
+    const data = HeaderSingle.find({
+      locale,
+      populate: "deep",
+    });
+    return data;
+  } catch (error) {
+    console.error("Error fetching header single", error);
+    return null;
+  }
 };
