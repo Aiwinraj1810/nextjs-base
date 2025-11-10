@@ -9,7 +9,7 @@ const LayeredImage = ({ block }: LayeredImageProps) => {
   const { layeredItem } = block;
 
   return (
-    <section className="mx-auto max-w-[75%] space-y-20">
+    <section className="mx-auto max-w-[80%] space-y-20 py-16">
       {layeredItem.map((item: any, index: number) => (
         <div
           key={item.id}
@@ -40,7 +40,7 @@ const LayeredImage = ({ block }: LayeredImageProps) => {
 
           {/* Text section */}
           <div className="flex flex-col h-full items-center justify-center max-w-4xl">
-            <p className="leading-relaxed text-gray-800">
+            <p className="leading-relaxed text-gray-800 font-inria text-pretty">
               {item.section ||
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error optio libero laborum doloribus numquam inventore sint impedit porro quasi dolores."}
             </p>

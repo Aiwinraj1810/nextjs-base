@@ -14,8 +14,8 @@ const config: Config = {
         xxl: "1400px",
       },
       fontFamily: {
-        inria: ["Inria Serif", "Rubik", "sans-serif"],
-        swear: ["Swear Display", "Rubik", "sans-serif"],
+        inria: ["var(--font-inria)", ...defaultFontFamily.sans],
+        swearDisplay: ["var(--font-swearDisplay)", ...defaultFontFamily.sans],
       },
       boxShadow: {
         header: "0 4px 9px 0 rgba(0, 0, 0, 0.1)",
@@ -236,16 +236,16 @@ const config: Config = {
           color: theme("colors.black"),
         },
         ".text-4": {
-          fontSize: "1.4rem",
+          fontSize: "1.8rem",
           fontWeight: "300",
           lineHeight: "1.2",
           letterSpacing: "0.5px",
           color: theme("colors.black"),
         },
         p: {
-          fontSize: "1.6rem",
+          fontSize: "2.1rem",
           fontWeight: "300",
-          lineHeight: "1.2",
+          lineHeight: "1.6",
           letterSpacing: "0.5px",
           color: theme("colors.black"),
         },

@@ -16,7 +16,6 @@ export const CommonPageRenderer = (
 
   return (
     <>
-      {routeURL && routeURL}
       {/* Place full block renderer here */}
       <FullBlockRendererPages blocks={page?.Blocks} />
     </>

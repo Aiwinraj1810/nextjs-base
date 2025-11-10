@@ -39,7 +39,7 @@ export default async function HomePage({ params }: Awaited<NextJSPageProps>) {
   console.log("Page data",page)
   return (
     <div className="min-h-screen ">
-      {JSON.stringify(data)}
+      {/* {JSON.stringify(data)} */}
       <FullBlockRendererPages blocks={page?.Blocks} />
     </div>
   );

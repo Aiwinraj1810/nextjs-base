@@ -16,26 +16,30 @@ const ImpactBanner = ({ block }: ImpactBannerProps) => {
 
   return (
     <section
-      className="relative flex h-full items-center justify-center bg-cover bg-center bg-no-repeat text-white"
+      className="relative flex h-full min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat text-white"
       style={{
         backgroundImage: `url(${bgUrl})`,
       }}
     >
-      <div className="grid grid-cols-2 gap-4 py-24">
+      <div className="grid grid-cols-2 gap-4">
         {/* Overlay content */}
-        <div className="mx-auto max-w-4xl space-y-6 px-6 py-16 text-center bg-[#EAE3DD]">
+        <div className="mx-auto max-w-4xl space-y-6 bg-[#EAE3DD] p-24">
           {heading && (
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-200 md:text-base">
-              {heading}
-            </h4>
+            <div className="flex items-center gap-2">
+              <div className="h-[0.7rem] w-[0.7rem] bg-grenadier"></div>
+
+              <p className="text-4 uppercase tracking-widest  text-[#333]">
+                {heading}
+              </p>
+            </div>
           )}
           {title && (
-            <h2 className="text-3xl font-bold text-white md:text-5xl">
+            <h3 className="font-swearDisplay text-[#333]">
               {title}
-            </h2>
+            </h3>
           )}
           {description && (
-            <p className="text-sm leading-relaxed text-gray-100 md:text-lg">
+            <p className="leading-[2.6rem] sm:leading-[1.5] sm:text-2 text-pretty">
               {description}
             </p>
           )}

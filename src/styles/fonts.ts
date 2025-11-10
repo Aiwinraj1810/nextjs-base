@@ -1,31 +1,34 @@
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: false,
-  variable: "--font-inter",
+
+const swearDisplay = localFont({
+  src: [
+    {
+      path: "../assets/fonts/SwearDisplay/Swear-Display-Thin.otf",
+      weight: "100",
+      style: "light",
+    },
+    {
+      path: "../assets/fonts/SwearDisplay/Swear-Display-Regular.otf",
+      weight: "300",
+      style: "normal",
+    },
+  ],
+  variable: "--font-swearDisplay",
+   display: "swap",
 });
 
-// const louis_george_cafe = localFont({
-//   src: [
-//     {
-//       path: "../assets/fonts/louis-george-cafe/LouisGeorgeCafe-Light.woff2",
-//       weight: "300",
-//       style: "normal",
-//     },
-//     {
-//       path: "../assets/fonts/louis-george-cafe/LouisGeorgeCafe-Regular.woff2",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "../assets/fonts/louis-george-cafe/LouisGeorgeCafe-Bold.woff2",
-//       weight: "600",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--font-louis-george-cafe",
-// });
+const inria = localFont({
+  src: [
+    {
+      path: "../assets/fonts/Inria_Serif/InriaSerif-Regular.ttf",
+      weight: "300",
+      style: "normal",
+    },
+  ],
+  variable: "--font-inria",
+   display: "swap",
+});
 
-export { inter };
+export { swearDisplay, inria };
+

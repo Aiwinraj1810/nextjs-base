@@ -63,7 +63,7 @@ export default async function DynamicPage({ params }: NextJSPageProps) {
   return (
     <>
       {/* For SEO Structured Markup coming from the CMS */}
-      {page?.SEO?.StructuredData && (
+      {/* {page?.SEO?.StructuredData && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -71,9 +71,9 @@ export default async function DynamicPage({ params }: NextJSPageProps) {
           }}
         />
       )}
-      {JSON.stringify(data, null, 2)}
+      {JSON.stringify(data, null, 2)} */}
       <hr />
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         {/* Rule Renderer for Dynamic Pages */}
         {rule.render(data, routes, lastSlug, locale)}
       </div>

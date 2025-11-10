@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react"; // arrow icon
 
 export interface BreadcrumbTrail {
   title?: string;
@@ -20,7 +22,10 @@ interface BreadcrumbProps {
 }
 
 const Breadcrumb = ({ trail, className, classNames }: BreadcrumbProps) => {
-  const filteredTrail = trail?.filter((e) => !!e.title);
+  const pathname = usePathname();
+
+  // Filter out empty titles
+  const filteredTrail = trail?.filter((e) => !!e.title) || [];
 
   const generateHref = (path: BreadcrumbTrail, index: number) => {
     const url =
@@ -37,64 +42,83 @@ const Breadcrumb = ({ trail, className, classNames }: BreadcrumbProps) => {
   };
 
   return (
-    <div className={cn("text-mobster", className)}>
+    <nav aria-label="breadcrumb" className={cn("text-mobster", className)}>
       <ul
         className={cn(
-          "flex flex-wrap items-center text-ellipsis whitespace-nowrap",
+          "flex flex-wrap items-center text-sm whitespace-nowrap",
           classNames?.list
         )}
       >
-        <li className="text-breadcrumb inline-flex leading-tight">
+        {/* Home link */}
+        <li className="inline-flex items-center">
           <Link
+            href="/"
             className={cn(
-              "link-underline after:bg-mobster hover:opacity-80",
+              "uppercase font-medium hover:text-gray-700 transition",
               classNames?.link
             )}
-            href={"/"}
           >
             Home
           </Link>
-          {!!filteredTrail?.length ? <Separator /> : null}
+          {!!filteredTrail?.length && <Separator />}
         </li>
-        {filteredTrail?.map((link, i) => {
+
+        {/* Dynamic trail */}
+        {filteredTrail?.map((item, i) => {
+          const isLast = i === filteredTrail.length - 1;
+          const href = generateHref(item, i);
+
           return (
             <li
-              key={`link-${i}`}
+              key={`breadcrumb-${i}`}
               className={cn(
-                "text-breadcrumb whitespace-break-spaces leading-tight",
-                link?.link && !link?.enabled && "cursor-not-allowed"
+                "inline-flex items-center",
+                !item.enabled && "cursor-not-allowed opacity-70"
               )}
             >
-              {link.link ? (
+              {!isLast ? (
                 <>
-                  {link?.enabled !== false ? (
+                  {item.enabled !== false && item.link ? (
                     <Link
+                      href={href}
                       className={cn(
-                        "link-underline after:bg-mobster hover:opacity-80",
+                        "hover:text-gray-700 transition",
                         classNames?.link
                       )}
-                      href={generateHref(link, i)}
                     >
-                      {link.title}
+                      {item.title}
                     </Link>
                   ) : (
-                    link.title
+                    <span className={classNames?.title}>{item.title}</span>
                   )}
                   <Separator />
                 </>
               ) : (
-                link.title
+                // Current page (no link)
+                <span
+                  className={cn(
+                    "font-semibold text-gray-900",
+                    classNames?.title
+                  )}
+                >
+                  {item.title}
+                </span>
               )}
             </li>
           );
         })}
       </ul>
-    </div>
+    </nav>
   );
 };
 
-export const Separator = () => {
-  return <span className="mx-[0.8rem]">/</span>;
-};
+/* Separator → replaces "/" with arrow */
+const Separator = () => (
+  <ChevronRight
+    size={16}
+    className="mx-2 text-gray-400 shrink-0"
+    aria-hidden="true"
+  />
+);
 
 export default Breadcrumb;

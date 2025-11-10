@@ -19,16 +19,16 @@ const ImageContent = ({ block }: ImageContentProps) => {
   const imageUrl = getStrapiMedia(contentImage.url);
 
   return (
-    <section className="mx-auto max-w-[80%]">
-      <div className="grid grid-cols-6 gap-4">
-        <div className="col-span-4 space-y-16">
+    <section className="mx-auto max-w-[80%] py-16">
+      <div className="grid grid-cols-6 gap-20">
+        <div className="col-span-4 space-y-24">
           <h2>{title || "Title here"}</h2>
-          <p>
+          <p className="font-inria">
             {description ||
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat excepturi ratione voluptatum dolores fugit cumque vitae, cum doloremque soluta illo autem asperiores dignissimos! Blanditiis fugit quo id necessitatibus cum exercitationem asperiores dolorum, ut facilis nulla itaque minima aut dignissimos sunt obcaecati eos fuga. Tempora et optio similique vitae nostrum accusamus."}
           </p>
           <div>
-            <Link className="bg-red-500" href={ctaUrl || "Link here"}>{ctaText || "Text here"}</Link>
+            <Link className="bg-[#C24E38] tracking-wider px-[5.4rem] py-8 sm:py-10  rounded-md text-[16px] text-white" href={ctaUrl || "Link here"}>{ctaText || "Text here"}</Link>
           </div>
         </div>
         <div className="relative col-span-2 overflow-hidden p-4">

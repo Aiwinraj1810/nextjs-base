@@ -42,13 +42,13 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
   return (
     <>
       <header
-        className={`fixed left-0 top-0  z-[9] w-full transition-transform duration-300 ${
+        className={`bg-[#EAE3DD] fixed left-0 top-0 pt-12 py-4 px-8 sm:px-16 lg:pt-20 sm:pb-[1.3rem] z-[9] w-full transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         } `}
       >
         <nav
           className={cn(
-            "flex items-center justify-between bg-gray-300 p-4",
+            "flex items-center justify-between  p-4",
             isDarkHeader && "bg-red-700",
           )}
         >
@@ -57,35 +57,13 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
               <ImageComponent
                 src="/images/logo.svg"
                 alt="Logo"
-                width={200}
-                height={30}
+                width={350}
+                height={100}
               />
             </Link>
-            <p>Content here</p>
           </div>
 
-          {/* Hamburger menu button for small screens */}
-          <div className="block lg:hidden">
-            <div className={`inline-block cursor-pointer`} onClick={toggleMenu}>
-              <div
-                className={`duration-400 mb-2 h-px w-10 bg-gray-700 transition-all ${
-                  isOpen ? "translate-y-[0.6rem] -rotate-45" : null
-                }`}
-              ></div>
-              <div
-                className={`duration-400 mb-2 h-px w-10 bg-gray-700 transition-all ${
-                  isOpen ? "opacity-0" : null
-                }`}
-              ></div>
-              <div
-                className={`duration-400 mt-2 h-px w-10 bg-gray-700 transition-all ${
-                  isOpen ? "translate-y-[-0.6rem] rotate-45" : null
-                }`}
-              ></div>
-            </div>
-          </div>
-
-          {/* Menu on the right */}
+                {/* Menu on the right */}
           <div className={`hidden lg:flex`}>
             <ul className="items-center justify-end space-x-4 lg:flex text-2xl">
               {navItems?.map((item, i) => {
@@ -131,6 +109,29 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
               })}
             </ul>
           </div>
+
+          {/* Hamburger menu button for small screens */}
+          <div className="block">
+            <div className={`inline-block cursor-pointer`} onClick={toggleMenu}>
+              <div
+                className={`duration-400 mb-2 h-px w-10 bg-gray-700 transition-all ${
+                  isOpen ? "translate-y-[0.6rem] -rotate-45" : null
+                }`}
+              ></div>
+              <div
+                className={`duration-400 mb-2 h-px w-10 bg-gray-700 transition-all ${
+                  isOpen ? "opacity-0" : null
+                }`}
+              ></div>
+              <div
+                className={`duration-400 mt-2 h-px w-10 bg-gray-700 transition-all ${
+                  isOpen ? "translate-y-[-0.6rem] rotate-45" : null
+                }`}
+              ></div>
+            </div>
+          </div>
+
+    
         </nav>
       </header>
       <div

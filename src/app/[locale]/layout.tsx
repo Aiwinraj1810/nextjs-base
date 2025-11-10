@@ -1,7 +1,7 @@
 import AppProvider from "@/components/AppProvider";
 import CookiePolicy from "@/components/elements/CookiePolicy";
 import { GetRemoteConfig, GetHeaderBlock } from "@/lib/methods.server";
-import { inter } from "@/styles/fonts";
+import { inria, swearDisplay } from "@/styles/fonts";
 import { PagePrams } from "@/typings/common";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Metadata, Viewport } from "next";
@@ -73,7 +73,7 @@ export default async function RootLayout({
       {!Boolean(process.env.IS_UAT) && globalConfig?.data?.GTMCode ? (
         <GoogleTagManager gtmId={globalConfig?.data?.GTMCode} />
       ) : null}
-      <body className={`${inter.variable} ${inter.className}`}>
+      <body className={`${swearDisplay.variable} ${inria.variable} ${swearDisplay.className}`}>
         <NextTopLoader showSpinner={false} color="#C36520" />
         <AppProvider locale={locale} globalConfig={globalConfig?.data}>
           <Header />

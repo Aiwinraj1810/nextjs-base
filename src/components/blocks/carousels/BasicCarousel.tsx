@@ -23,7 +23,7 @@ const BasicCarousel: React.FC<BasicCarouselProps> = ({ options, block }) => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(defaultOptions, [
     AutoScroll({
-      playOnInit: true,
+      playOnInit: false,
       stopOnInteraction: false,
       stopOnMouseEnter: false,
       speed: 1,
@@ -38,24 +38,24 @@ const BasicCarousel: React.FC<BasicCarouselProps> = ({ options, block }) => {
 
     setIsPlaying(autoScroll.isPlaying());
     emblaApi
-      .on("autoScroll:play", () => setIsPlaying(true))
+      .on("autoScroll:play", () => setIsPlaying(false))
       .on("autoScroll:stop", () => setIsPlaying(false))
       .on("reInit", () => setIsPlaying(autoScroll.isPlaying()));
   }, [emblaApi]);
 
   return (
-    <section className="py-16">
+    <section className="pl-10 py-16">
       {Title && <h2 className="mb-10 text-center">{Title}</h2>}
 
       <div className="embla">
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex gap-6">
+          <div className="embla__container flex gap-40">
             {Items?.map((item: any) => (
               <div
-                className="embla__slide min-w-[70%] flex-shrink-0 overflow-hidden rounded-xl bg-white shadow-lg md:min-w-[30%]"
+                className="embla__slide min-w-[70%] flex-shrink-0 overflow-hidden md:min-w-[30%]"
                 key={item.id}
               >
-                <div className="relative h-56 w-full">
+                <div className="relative h-96 w-full">
                   <Image
                     src="/images/image.jpg"
                     alt={item.Designation || "Board position"}
@@ -63,11 +63,11 @@ const BasicCarousel: React.FC<BasicCarouselProps> = ({ options, block }) => {
                     className="object-cover"
                   />
                 </div>
-                <div className="space-y-2 p-6 text-center">
-                  <h5 className="= font-semibold text-gray-900">
+                <div className="space-y-2 p-6 text-start">
+                  <h4 className="text-gray-900">
                     {item.Designation}
-                  </h5>
-                  <p className=" text-gray-600">{item.Timeline}</p>
+                  </h4>
+                  <p className=" text-gray-600 font-thin">{item.Timeline}</p>
                 </div>
               </div>
             ))}
