@@ -27,7 +27,7 @@ const LayeredImage = ({ block }: LayeredImageProps) => {
 
             {/* Overlapping image */}
             <div
-              className={`absolute ${index % 2 !== 0 ? "left-[-3rem] top-[-3rem]" : "right-[-3rem] top-[-3rem]"} h-40 w-40 overflow-hidden shadow-lg md:h-72 md:w-64`}
+              className={`hidden md:block absolute ${index % 2 !== 0 ? "left-[-3rem] top-[-3rem]" : "right-[-3rem] top-[-3rem]"} h-40 w-40 overflow-hidden shadow-lg md:h-72 md:w-64`}
             >
               <Image
                 src={item.layerImage?.url || "/images/image.jpg"}

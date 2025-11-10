@@ -23,7 +23,7 @@ const ImpactBanner = ({ block }: ImpactBannerProps) => {
     >
       <div className="grid grid-cols-2 gap-4">
         {/* Overlay content */}
-        <div className="mx-auto max-w-4xl space-y-6 bg-[#EAE3DD] p-24">
+        <div className="col-span-full md:col-span-1 mx-auto max-w-4xl space-y-6 bg-[#EAE3DD] p-24">
           {heading && (
             <div className="flex items-center gap-2">
               <div className="h-[0.7rem] w-[0.7rem] bg-grenadier"></div>

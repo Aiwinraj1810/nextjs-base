@@ -9,7 +9,7 @@ const NumCount = ({ block }: NumCountProps) => {
   if (!Counter) return null;
   console.log("Counter : ", Counter);
   return (
-    <section className="mx-auto flex max-w-[80%] items-center justify-between py-16">
+    <section className="mx-auto flex flex-wrap md:flex-nowrap max-w-[80%] items-center justify-between py-16">
       {Counter.map((item: any) => (
         <div key={item.id} className="space-y-10 font-swearDisplay font-light">
           <h2>{item.counter || "100"}</h2>

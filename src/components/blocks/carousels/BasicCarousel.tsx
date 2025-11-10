@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import AutoScroll from "embla-carousel-auto-scroll";
 import Image from "next/image";
 import { DynamicZoneProps } from "@/typings/common";
 
@@ -15,45 +14,36 @@ interface BasicCarouselProps {
 const BasicCarousel: React.FC<BasicCarouselProps> = ({ options, block }) => {
   const { Title, Items } = block;
 
+  // Default options (no auto-scroll)
   const defaultOptions: EmblaOptionsType = {
     loop: true,
     align: "start",
+    dragFree: false,
+    containScroll: "trimSnaps",
     ...options,
   };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(defaultOptions, [
-    AutoScroll({
-      playOnInit: false,
-      stopOnInteraction: false,
-      stopOnMouseEnter: false,
-      speed: 1,
-    }),
-  ]);
-
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [emblaRef] = useEmblaCarousel(defaultOptions);
 
   useEffect(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll;
-    if (!autoScroll) return;
-
-    setIsPlaying(autoScroll.isPlaying());
-    emblaApi
-      .on("autoScroll:play", () => setIsPlaying(false))
-      .on("autoScroll:stop", () => setIsPlaying(false))
-      .on("reInit", () => setIsPlaying(autoScroll.isPlaying()));
-  }, [emblaApi]);
+    // Nothing needed since auto scroll is removed
+  }, []);
 
   return (
-    <section className="pl-10 py-16">
-      {Title && <h2 className="mb-10 text-center">{Title}</h2>}
+    <section className="py-16 pl-6 md:pl-10">
+      {Title && (
+        <h2 className="font-swearDisplay mb-10 text-center">
+          {Title}
+        </h2>
+      )}
 
       <div className="embla">
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex gap-40">
+          <div className="embla__container flex gap-6 md:gap-10 lg:gap-20">
             {Items?.map((item: any) => (
               <div
-                className="embla__slide min-w-[70%] flex-shrink-0 overflow-hidden md:min-w-[30%]"
                 key={item.id}
+                className="embla__slide w-[100%] flex-shrink-0 overflow-hidden sm:w-[70%] md:w-[40%] lg:w-[25%]"
               >
                 <div className="relative h-96 w-full">
                   <Image
@@ -64,10 +54,10 @@ const BasicCarousel: React.FC<BasicCarouselProps> = ({ options, block }) => {
                   />
                 </div>
                 <div className="space-y-2 p-6 text-start">
-                  <h4 className="text-gray-900">
+                  <h4 className="font-medium text-gray-900">
                     {item.Designation}
                   </h4>
-                  <p className=" text-gray-600 font-thin">{item.Timeline}</p>
+                  <p className="font-thin text-gray-600">{item.Timeline}</p>
                 </div>
               </div>
             ))}

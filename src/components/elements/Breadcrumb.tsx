@@ -45,7 +45,7 @@ const Breadcrumb = ({ trail, className, classNames }: BreadcrumbProps) => {
     <nav aria-label="breadcrumb" className={cn("text-mobster", className)}>
       <ul
         className={cn(
-          "flex flex-wrap items-center text-sm whitespace-nowrap",
+          "flex flex-wrap items-center text-4 whitespace-nowrap",
           classNames?.list
         )}
       >
