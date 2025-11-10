@@ -71,8 +71,12 @@ export default async function DynamicPage({ params }: NextJSPageProps) {
           }}
         />
       )}
-      {/* Rule Renderer for Dynamic Pages */}
-      {rule.render(data, routes, lastSlug, locale)}
+      {JSON.stringify(data, null, 2)}
+      <hr />
+      <div className="space-y-24">
+        {/* Rule Renderer for Dynamic Pages */}
+        {rule.render(data, routes, lastSlug, locale)}
+      </div>
     </>
   );
 }

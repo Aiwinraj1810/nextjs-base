@@ -42,7 +42,7 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 z-[9] w-full transition-transform duration-300 ${
+        className={` z-[9] w-full transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         } `}
       >
@@ -61,6 +61,7 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
                 height={30}
               />
             </Link>
+            <p>Content here</p>
           </div>
 
           {/* Hamburger menu button for small screens */}
@@ -86,7 +87,7 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
 
           {/* Menu on the right */}
           <div className={`hidden lg:flex`}>
-            <ul className="items-center justify-end space-x-4 lg:flex">
+            <ul className="items-center justify-end space-x-4 lg:flex text-2xl">
               {navItems?.map((item, i) => {
                 let active: boolean = false;
 
@@ -109,7 +110,7 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
                       {item.title}
                     </Link>
                     {item?.items?.length ? (
-                      <ul className="absolute z-10 hidden min-w-[160px] bg-white p-4 shadow-lg group-hover:block">
+                      <ul className="absolute z-10 hidden min-w-[160px]  bg-white p-4 shadow-lg group-hover:block">
                         {item?.items?.map((e, i) => (
                           <li key={i}>
                             <Link

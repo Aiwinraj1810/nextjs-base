@@ -35,9 +35,11 @@ export default async function HomePage({ params }: Awaited<NextJSPageProps>) {
   if (!page) {
     return notFound();
   }
+
+  console.log("Page data",page)
   return (
-    <div className="min-h-screen overflow-s">
-      {/* {JSON.stringify(data)} */}
+    <div className="min-h-screen ">
+      {JSON.stringify(data)}
       <FullBlockRendererPages blocks={page?.Blocks} />
     </div>
   );

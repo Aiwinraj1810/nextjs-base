@@ -1,0 +1,48 @@
+"use client";
+
+//nextjs-base\src\components\blocks\content\ImageContent.tsx
+import Image from "next/image";
+
+import { DynamicZoneProps } from "@/typings/common";
+import { getStrapiMedia } from "@/lib/utils";
+import Link from "next/link";
+
+interface ImageContentProps {
+  block: DynamicZoneProps;
+}
+
+const ImageContent = ({ block }: ImageContentProps) => {
+  const { contentImage, title, description, ctaText, ctaUrl } = block; // ensure uppercase matches your Strapi field
+
+  if (!contentImage?.url) return null;
+
+  const imageUrl = getStrapiMedia(contentImage.url);
+
+  return (
+    <section className="mx-auto max-w-[80%]">
+      <div className="grid grid-cols-6 gap-4">
+        <div className="col-span-4 space-y-16">
+          <h2>{title || "Title here"}</h2>
+          <p>
+            {description ||
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat excepturi ratione voluptatum dolores fugit cumque vitae, cum doloremque soluta illo autem asperiores dignissimos! Blanditiis fugit quo id necessitatibus cum exercitationem asperiores dolorum, ut facilis nulla itaque minima aut dignissimos sunt obcaecati eos fuga. Tempora et optio similique vitae nostrum accusamus."}
+          </p>
+          <div>
+            <Link className="bg-red-500" href={ctaUrl || "Link here"}>{ctaText || "Text here"}</Link>
+          </div>
+        </div>
+        <div className="relative col-span-2 overflow-hidden p-4">
+          <Image
+            src={imageUrl}
+            alt={contentImage.alternativeText || "Full width image"}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ImageContent;
