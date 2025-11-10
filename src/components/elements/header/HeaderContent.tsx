@@ -42,7 +42,7 @@ const HeaderContent = ({ navItems }: HeaderContentProps) => {
   return (
     <>
       <header
-        className={` z-[9] w-full transition-transform duration-300 ${
+        className={`fixed left-0 top-0  z-[9] w-full transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         } `}
       >
