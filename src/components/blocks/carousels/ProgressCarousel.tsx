@@ -19,7 +19,7 @@ interface InterestCarouselProps {
 const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
   const { title, verticalCarousel } = block;
 
-  const AUTOPLAY_INTERVAL = 15000;
+  const AUTOPLAY_INTERVAL = 15000; 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     ...options,
@@ -71,10 +71,10 @@ const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
   }, [emblaApi, onSelect, startProgress]);
 
   return (
-    <section className="mx-auto max-w-[90%] bg-[#e8e2db] py-16">
+    <section className="mx-auto max-w-[75%] bg-[#e8e2db] py-16">
       <h2 className="mb-12 text-center">{title || "Personal Interests"}</h2>
 
-      <div className="grid items-center gap-24 px-6 md:grid-cols-2">
+      <div className="grid items-center gap-12 px-6 md:grid-cols-2">
         {/* Left: Image carousel */}
         <div className="embla overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex">
@@ -94,7 +94,7 @@ const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
           </div>
 
           {/* Navigation + Progress */}
-          <div className="mt-10 flex items-center justify-between border-gray-400/50 pt-6">
+          <div className="mt-10 flex items-center justify-between  border-gray-400/50 pt-6">
             {/* Prev/Next buttons */}
             <div className="flex gap-4">
               <PrevButton
@@ -116,13 +116,13 @@ const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
             </div>
 
             {/* Progress bar + counter */}
-            <div className="flex w-full flex-col items-end justify-between gap-10 px-6 font-inria">
-              <p className="text-4 w-fit tracking-widest text-gray-700">
+            <div className="flex flex-col items-end justify-between w-full gap-10 px-6 font-inria">
+              <p className="text-4 tracking-widest text-gray-700 w-fit">
                 {String(selectedIndex + 1).padStart(2, "0")} /{" "}
                 {String(verticalCarousel.length).padStart(2, "0")}
               </p>
               {/* Progress Bar */}
-              <div className="mb-2 h-[2px] w-full overflow-hidden rounded-full bg-gray-300">
+              <div className="w-full h-[2px] bg-gray-300 mb-2 overflow-hidden rounded-full">
                 <div
                   className="h-[2px] bg-gray-800 transition-all duration-100 ease-linear"
                   style={{ width: `${progress}%` }}
@@ -143,9 +143,9 @@ const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
                     setProgress(0);
                     startProgress();
                   }}
-                  className={`font-swearDisplay cursor-pointer tracking-wide transition-all ${
+                  className={`cursor-pointer font-swearDisplay tracking-wide  transition-all  ${
                     index === selectedIndex
-                      ? "text-black"
+                      ? " text-black"
                       : "text-gray-500 hover:text-black"
                   }`}
                 >
@@ -153,13 +153,7 @@ const ProgressCarousel = ({ options, block }: InterestCarouselProps) => {
                 </h3>
 
                 {index === selectedIndex && (
-                  <p
-                    className={`mt-2 max-w-md overflow-hidden leading-relaxed text-gray-700 transition-all duration-500 ${
-                      index === selectedIndex
-                        ? "max-h-40 translate-y-0"
-                        : "max-h-0 -translate-y-2"
-                    }`}
-                  >
+                  <p className="mt-2 max-w-md  leading-relaxed text-gray-700">
                     {item.carouselDescription}
                   </p>
                 )}
