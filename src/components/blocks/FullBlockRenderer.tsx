@@ -8,6 +8,9 @@ import ImageContent from "./content/ImageContent";
 import NumCount from "./counter/NumCount";
 import LayeredImage from "./image/LayeredImage";
 import BasicCarousel from "./carousels/BasicCarousel";
+import ImpactBanner from "./banners/ImpactBanner";
+import ProgressCarousel from "./carousels/ProgressCarousel";
+import AwardsCarousel from "./carousels/AwardsCarousel";
 
 const ContentBlock = dynamic(
   () => import("@/components/blocks/content/Content"),
@@ -37,11 +40,18 @@ const FullBlockRendererPages = async ({
       case "blocks.layered-parent":
         return <LayeredImage block={block} key={`block-${index}`} />;
       case "blocks.basic-carousel":
-        return <BasicCarousel  block={block} key={`block-${index}`} />;
+        return <BasicCarousel block={block} key={`block-${index}`} />;
+      case "blocks.impact-section":
+        return <ImpactBanner block={block} key={`block-${index}`} />;
+      case "blocks.carousel-vertical-fade":
+        return <ProgressCarousel block={block} key={`block-${index}`} />;
+      case "blocks.awards-block":
+        return <AwardsCarousel block={block} key={`block-${index}`} />;
       default:
         return <></>;
     }
   };
+  
 
   if (!blocks?.length) return null;
   return (

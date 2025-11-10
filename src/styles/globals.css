@@ -11,6 +11,16 @@
   );
 }
 
+.embla__container {
+  display: flex;
+  user-select: none;
+}
+.embla__slide {
+  position: relative;
+  min-width: 0;
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

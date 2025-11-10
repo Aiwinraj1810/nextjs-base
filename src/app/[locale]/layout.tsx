@@ -10,6 +10,7 @@ import NextTopLoader from "nextjs-toploader";
 import React from "react";
 import { getStaticParams } from "../locales/server";
 import Header from "@/components/elements/header";
+import Footer from "@/components/elements/Footer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -78,6 +79,7 @@ export default async function RootLayout({
           <Header />
           <CookiePolicy />
           {children}
+          <Footer />
         </AppProvider>
       </body>
     </html>
