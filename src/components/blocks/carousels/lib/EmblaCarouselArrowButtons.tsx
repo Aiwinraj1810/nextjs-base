@@ -6,7 +6,7 @@ export const PrevButton = ({ onClick, disabled }: any) => (
   <button
     onClick={onClick}
     disabled={disabled}
-    className="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
+    className="w-16 h-16 text-4 border border-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
   >
     ←
   </button>
@@ -16,7 +16,7 @@ export const NextButton = ({ onClick, disabled }: any) => (
   <button
     onClick={onClick}
     disabled={disabled}
-    className="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
+    className="w-16 h-16 text-4 border border-gray-600 rounded-full flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
   >
     →
   </button>

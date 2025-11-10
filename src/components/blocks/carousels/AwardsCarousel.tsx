@@ -4,6 +4,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
 import { DynamicZoneProps } from "@/typings/common";
+import Image from "next/image";
 
 interface AwardsCarouselProps {
   block: DynamicZoneProps;
@@ -13,18 +14,16 @@ interface AwardsCarouselProps {
 const AwardsCarousel = ({ block, options }: AwardsCarouselProps) => {
   const { title, awardsList } = block;
 
-  // Extract unique years
   const years = useMemo(
     () =>
       Array.from(new Set(awardsList.map((award: any) => award.year))).sort(
-        (a, b) => b - a,
+        (a: any, b: any) => b - a
       ),
-    [awardsList],
+    [awardsList]
   );
 
   const [activeYear, setActiveYear] = useState<"All" | number>("All");
 
-  // Filter awards based on selected tab
   const filteredAwards =
     activeYear === "All"
       ? awardsList
@@ -36,19 +35,16 @@ const AwardsCarousel = ({ block, options }: AwardsCarouselProps) => {
     ...options,
   });
 
-  // Re-init Embla when filteredAwards change
   useEffect(() => {
-    if (emblaApi) {
-      emblaApi.reInit();
-    }
+    if (emblaApi) emblaApi.reInit();
   }, [filteredAwards, emblaApi]);
 
   return (
-    <section className="bg-[#f6f2ed] py-16 text-gray-800">
-      <div className="mx-auto max-w-[75%] px-6">
+    <section className=" bg-[#C24E38] py-16 text-white">
+      <div className="mx-auto max-w-[90%]">
         {/* Title */}
         {title && (
-          <h2 className="mb-10 text-center font-serif font-semibold">
+          <h2 className="font-swearDisplay mb-10 text-center  text-white">
             {title}
           </h2>
         )}
@@ -57,22 +53,22 @@ const AwardsCarousel = ({ block, options }: AwardsCarouselProps) => {
         <div className="mb-12 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => setActiveYear("All")}
-            className={`rounded-full border px-5 py-2 transition-all duration-300 ${
+            className={`rounded-md text-4 border px-8 py-3 font-light transition-all duration-300 ${
               activeYear === "All"
-                ? "border-gray-900 bg-gray-900 text-white"
-                : "border-gray-400 hover:bg-gray-200"
+                ? "bg-white text-black"
+                : "border-white text-white hover:bg-gray-200 hover:text-black"
             }`}
           >
             All
           </button>
-          {years.map((year) => (
+          {years.map((year: any) => (
             <button
               key={year}
               onClick={() => setActiveYear(year)}
-              className={`rounded-full border px-5 py-2 transition-all duration-300 ${
+              className={`rounded-md text-4 border px-8 py-3 font-light transition-all duration-300 ${
                 activeYear === year
-                  ? "border-gray-900 bg-gray-900 text-white"
-                  : "border-gray-400 hover:bg-gray-200"
+                  ? "bg-white text-black"
+                  : "border-white text-white hover:bg-gray-200 hover:text-black"
               }`}
             >
               {year}
@@ -83,34 +79,48 @@ const AwardsCarousel = ({ block, options }: AwardsCarouselProps) => {
         {/* Carousel */}
         <div className="embla">
           <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-            <div className="embla__container flex gap-6">
+            <div className="embla__container flex gap-8">
               {filteredAwards.map((award: any) => (
                 <div
                   key={award.id}
-                  className="embla__slide flex-[0_0_80%] sm:flex-[0_0_50%] md:flex-[0_0_33.333%] lg:flex-[0_0_25%]"
+                  className="embla__slide flex-[0_0_80%] rounded-xl   sm:flex-[0_0_60%] md:flex-[0_0_40%] lg:flex-[0_0_25%]"
                 >
-                  <div className="flex h-full flex-col justify-between rounded-xl bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-lg">
-                    <div>
-                      <h3 className="mb-2 text-lg font-semibold text-gray-900 md:text-xl">
-                        {award.title}
-                      </h3>
-                      {award.year && (
-                        <p className="mb-4 text-sm text-gray-600">
-                          {award.year}
-                        </p>
-                      )}
-                      {award.description && (
-                        <p className="mb-4 text-sm leading-relaxed text-gray-700">
-                          {award.description}
-                        </p>
-                      )}
+                  <div className="flex flex-col h-full">
+                    {/* Image */}
+                    <div className="relative h-96 w-full mb-6 overflow-hidden bg-white/10">
+                      <Image
+                        src={award.image?.url || "/images/image.jpg"}
+                        alt={award.title || "Award Image"}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                      />
                     </div>
+
+                    {/* Dot + Year */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="h-2 w-2 rounded-full bg-white"></span>
+                      <span className="text-[1.5rem] text-white/80 font-inria">{award.year}</span>
+                    </div>
+
+                    {/* Award Title */}
+                    <h4 className="font-medium  text-white">
+                      {award.title}
+                    </h4>
+
+                    {/* Optional Description */}
+                    {award.description && (
+                      <p className="mt-2 text-sm leading-relaxed text-white/70">
+                        {award.description}
+                      </p>
+                    )}
+
+                    {/* Optional Link */}
                     {award.link && (
                       <a
                         href={award.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-auto text-sm text-blue-600 hover:underline"
+                        className="mt-4 text-sm text-white underline underline-offset-2 hover:text-gray-200"
                       >
                         Learn more →
                       </a>
@@ -124,7 +134,7 @@ const AwardsCarousel = ({ block, options }: AwardsCarouselProps) => {
 
         {/* Empty State */}
         {filteredAwards.length === 0 && (
-          <p className="mt-12 text-center text-gray-600">
+          <p className="mt-12 text-center text-gray-200">
             No awards found for this year.
           </p>
         )}

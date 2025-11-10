@@ -21,6 +21,11 @@ const swearDisplay = localFont({
 const inria = localFont({
   src: [
     {
+      path: "../assets/fonts/Inria_Serif/InriaSerif-Light.ttf",
+      weight: "100",
+      style: "light",
+    },
+    {
       path: "../assets/fonts/Inria_Serif/InriaSerif-Regular.ttf",
       weight: "300",
       style: "normal",
